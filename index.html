@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="javascript/game.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- <div class="row box p-10">
+            <button type="button" class="btn btn-primary btn-lg">The Psychic Game!</button>
+        </div> -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row box"></div>
+                <div class="row">
+                    <button type="button" class="btn btn-danger btn-xlg bg-danger" id="buttonid" >Computer Choice
+                        <div id="computerLeter">XXX</div>
+                    </button>
+                    
+                    
+                </div>   
+            </div>
+
+            <div class="col-md-6">
+                <video   class="video-stream html5-main-video" controlslist="nodownload" style="width: auto; height: 100%; left: 120%;" src="assets/images/UvsMe.MOV" type="video/MOV" loop>browser doesnt support</video>
+            </div>
+           
+           
+            <div class="col-md-3">
+                <div class="row box"></div>
+                    <div class="row">
+                        <button type="button" class="btn btn-danger btn-xlg bg-danger" id="buttonid" >Your Guess
+                            <div id="yourGuess">xxxx</div>
+                        </button>
+                        
+                    </div>    
+                </div> 
+            </div>  
+        </div>
+
+        <div class="row">
+                <button type="button" class="btn btn-danger btn-xlg bg-danger" id="scorebuttonid" >You have <span id="guessesLeftId" >10</span> more chances; <div id="gameover"></div></button>
+                
+                
+        </div>
+        <div class="row">
+                <button type="button" class="btn btn-danger btn-xlg bg-danger" id="scorebuttonid" >Your Score : <span id="scoreId" >0</span></button>
+                
+                
+        </div>
+    </div>
+
+
+    <script>
+    
+        var score = 0;
+        var guessesLeft = 10;
+        var computerChoice;
+        var userGuess;  
+    // function random_character_includingNumbers_caseSensitive() {
+        // var chars = "0123456789abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";
+        // return chars.substr( Math.floor(Math.random() * 64), 1);
+    // }
+
+    // function random_letter_caseSensitive() {
+        // var chars = "abcdefghijklmnopqurstuvwxyzABCDEFGHIJKLMNOPQURSTUVWXYZ";
+        // return chars.substr( Math.floor(Math.random() * 54), 1);
+    // }
+
+    function random_letter() {
+        var chars = "abcdefghijklmnopqurstuvwxyz";
+        return chars.substr( Math.floor(Math.random() * 27), 1);
+    }
+    
+    function computerSelectLetter (){
+        computerChoice = random_letter();
+        console.log(computerChoice);
+        return computerChoice;
+    }
+
+    function updateGuessLeft () {
+        if (guessesLeft > 0){
+            document.getElementById("guessesLeftId").innerHTML = guessesLeft;
+        }
+        else {
+            document.getElementById("guessesLeftId").innerHTML = " NO ";
+            document.getElementById("gameover").innerHTML = " GAME OVER! "
+        }
+    }
+
+    function updateScore(){
+        document.getElementById("scoreId").innerHTML = score;
+    }
+
+    function reset(){
+        computerSelectLetter();
+        guessesLeft = 10;
+        document.getElementById("computerLeter").innerHTML = "New Letter selected by computer"; 
+
+
+    }
+
+    reset();
+  
+
+    document.onkeypress = function (event){
+         
+        userGuess = event.key.toLowerCase();
+        document.getElementById("yourGuess").innerHTML = userGuess;
+        guessesLeft -=1;
+        updateGuessLeft();
+
+        if (userGuess == computerChoice) {
+            score++;
+            document.getElementById("computerLeter").innerHTML = "YAYYYYYYY;   " + computerChoice +" is correct";
+            reset();
+        }
+        else {
+            document.getElementById("computerLeter").innerHTML = "OOOOOPS! Another Guess PLZ!"; 
+        }
+        updateScore();
+    }
+    
+
+    </script>
+
+
+
+
+   
+</body>
+</html>
+
+
+<!-- <video tabindex="-1" class="video-stream html5-main-video" controlslist="nodownload" style="width: 236px; height: 419px; left: 0.15625px; top: 0px;" src="blob:https://youtube.googleapis.com/2678729a-1586-4660-b68e-099270b4772d"></video> -->
