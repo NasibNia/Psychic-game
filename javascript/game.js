@@ -59,7 +59,7 @@ document.onkeypress = function (event){
             document.getElementById("computerLeter").innerHTML = "YAYYYYYYY;   " + computerChoice +" is correct";
             updateScore();
             document.getElementById("myAudioWin").play();
-            PopUp();
+            PopUpWin();
             reset();
         }
         else {            
@@ -68,6 +68,8 @@ document.onkeypress = function (event){
     } else {
         
         lose++;
+        PopUplose();
+        document.getElementById("myAudioLose").play();
         updateScore();
         reset();
     }    
@@ -89,7 +91,7 @@ $("#infoButton").on("click", function() {
     div.fadeOut("fast");
 });
 
-function PopUp(){
+function PopUpWin(){
     var div = $("#infoButton2");
     div.fadeIn("slow");
     var i = 0;
@@ -104,6 +106,21 @@ function PopUp(){
     div.animate({width: '50%', opacity: '1'}, "fast"); 
     div.fadeOut("fast");
 }
-    
+
+function PopUplose(){
+    var div = $("#infoButton3");
+    div.fadeIn("slow");
+    var i = 0;
+    while (i<10){
+        div.animate({opacity: '1'}, "fast");
+        div.animate({opacity: '0.3'}, "fast");
+        i++;
+    }
+    div.animate({height: '300px', opacity: '0.8'}, "fast");
+    div.animate({width: '300px', opacity: '1'}, "fast");
+    div.animate({height: '30%', opacity: '0.8'}, "fast");
+    div.animate({width: '50%', opacity: '1'}, "fast"); 
+    div.fadeOut("fast");
+}
 
     
