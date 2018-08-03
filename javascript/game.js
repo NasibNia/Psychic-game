@@ -100,8 +100,8 @@ function PopUp(){
     }
     div.animate({height: '300px', opacity: '0.8'}, "fast");
     div.animate({width: '300px', opacity: '1'}, "fast");
-    div.animate({height: '100px', opacity: '0.8'}, "fast");
-    div.animate({width: '100px', opacity: '1'}, "fast"); 
+    div.animate({height: '30%', opacity: '0.8'}, "fast");
+    div.animate({width: '50%', opacity: '1'}, "fast"); 
     div.fadeOut("fast");
 }
     
