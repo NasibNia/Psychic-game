@@ -1,6 +1,6 @@
 <!-- Put the name of the project after the # -->
 <!-- the # means h1  -->
-# You Vs. Me Psychic-game
+# You Vs. Me Psychic Game
 
 <!-- Put a description of what the project is -->
 

@@ -40,6 +40,8 @@ function reset(){
     document.getElementById("gameover").innerHTML = " NEW GAME! ";
 }
 
+
+
 reset();
 document.onkeypress = function (event){
 
@@ -56,6 +58,8 @@ document.onkeypress = function (event){
             win++;
             document.getElementById("computerLeter").innerHTML = "YAYYYYYYY;   " + computerChoice +" is correct";
             updateScore();
+            document.getElementById("myAudioWin").play();
+            PopUp();
             reset();
         }
         else {            
@@ -68,6 +72,38 @@ document.onkeypress = function (event){
         reset();
     }    
 };
+
+$("#infoButton").on("click", function() {
+    //animate:
+    var div = $("#infoButton");
+    var i = 0;
+    while (i<5){
+        div.animate({opacity: '1'}, "fast");
+        div.animate({opacity: '0.3'}, "fast");
+        i++;
+    }
+    div.animate({height: '300px', opacity: '0.5'}, "fast");
+    div.animate({width: '300px', opacity: '0.8'}, "fast");
+    div.animate({height: '100px', opacity: '1'}, "fast");
+    div.animate({width: '100px', opacity: '0.5'}, "fast"); 
+    div.fadeOut("fast");
+});
+
+function PopUp(){
+    var div = $("#infoButton2");
+    div.fadeIn("slow");
+    var i = 0;
+    while (i<20){
+        div.animate({opacity: '1'}, "fast");
+        div.animate({opacity: '0.3'}, "fast");
+        i++;
+    }
+    div.animate({height: '300px', opacity: '0.8'}, "fast");
+    div.animate({width: '300px', opacity: '1'}, "fast");
+    div.animate({height: '100px', opacity: '0.8'}, "fast");
+    div.animate({width: '100px', opacity: '1'}, "fast"); 
+    div.fadeOut("fast");
+}
     
 
     

@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="javascript/game.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <audio id="myAudioWin"><source src="assets/images/cheer.mp3"></audio>
 </head> 
 <body>
 
@@ -27,7 +29,10 @@
             </div>
 
             <div class="col-md-6">
-                <video   class="video-stream html5-main-video" controlslist="nodownload" style="width: auto; height: 100%; left: 120%;" id="myVideo" src="assets/images/UvsMe.MOV" type="video/MOV" autoplay muted controls loop>browser doesnt support</video>
+                
+                <video   class="video-stream html5-main-video" controlslist="nodownload nofullscreen" style="width: auto; height: 100%; left: 120%;" id="myVideo" src="assets/images/UvsMe.MOV" type="video/MOV" autoplay muted controls loop>browser doesnt support</video>
+
+                
             </div>
            
            
@@ -40,7 +45,23 @@
                         
                     </div>    
                 </div> 
-            </div>  
+
+                <div class="row box">
+                        <button class="btn" btn-lg data-toggle="popover" id="infoButton"title="Popover Header" data-content="UNMUTE THE VIDEO!">
+                        <div>DON'T MISS OUT ON THE MUSIC</div>
+                        <div>UNMUTE THE VIDEO!</div>
+                        <div>*****</div>
+                        <div>now Click me to start the game!</div>
+                     </button>
+                     <button class="btn" btn-lg data-toggle="popover" id="infoButton2"title="Popover Header" data-content="">
+                        <div>GOOD JOB!</div>
+                        <div>YOU WON!</div>  
+                        </button>
+                
+                </div> 
+                
+            </div> 
+            
         </div>
 
         <div class="row">
