@@ -1,4 +1,5 @@
-var score = 0;
+var win = 0;
+var lose = 0;
 var guessesLeft = 10;
 var computerChoice;
 var userGuess;  
@@ -26,7 +27,9 @@ function updateGuessLeft () {
 }
 
 function updateScore(){
-    document.getElementById("scoreId").innerHTML = score;
+    document.getElementById("winId").innerHTML = win;
+    document.getElementById("loseId").innerHTML = lose;
+
 }
 
 function reset(){
@@ -50,16 +53,18 @@ document.onkeypress = function (event){
         updateGuessLeft();
 
         if (userGuess == computerChoice) {
-            score++;
+            win++;
             document.getElementById("computerLeter").innerHTML = "YAYYYYYYY;   " + computerChoice +" is correct";
+            updateScore();
             reset();
         }
-        else {
+        else {            
             document.getElementById("computerLeter").innerHTML = "OOOOOPS! Another Guess PLZ!"; 
         }
-        updateScore();
-
     } else {
+        
+        lose++;
+        updateScore();
         reset();
     }    
 };
