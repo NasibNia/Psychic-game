@@ -2,7 +2,9 @@ var win = 0;
 var lose = 0;
 var guessesLeft = 10;
 var computerChoice;
-var userGuess;  
+var userGuess;
+var holdGuessing = false; 
+var unmuteBox = true; 
 
 
 function random_letter() {
@@ -33,6 +35,7 @@ function updateScore(){
 }
 
 function reset(){
+    holdGuessing = false;
     computerSelectLetter();
     guessesLeft = 10;
     document.getElementById("computerLeter").innerHTML = "New Letter selected by computer!"; 
@@ -41,53 +44,50 @@ function reset(){
 }
 
 
-
 reset();
 document.onkeypress = function (event){
 
     document.getElementById("gameover").innerHTML = "XXXXXX";
-
-    if (guessesLeft >=1){
-
-        userGuess = event.key.toLowerCase();
-        document.getElementById("yourGuess").innerHTML = userGuess;
-        guessesLeft -=1;
-        updateGuessLeft();
-
-        if (userGuess == computerChoice) {
-            win++;
-            document.getElementById("computerLeter").innerHTML = "YAYYYYYYY;   " + computerChoice +" is correct";
-            updateScore();
-            document.getElementById("myAudioWin").play();
-            PopUpWin();
-            reset();
-        }
-        else {            
-            document.getElementById("computerLeter").innerHTML = "OOOOOPS! Another Guess PLZ!"; 
-        }
-    } else {
+    if (!unmuteBox){
+        if (!holdGuessing){
+            if (guessesLeft >=1 ){
+                userGuess = event.key.toLowerCase();
+                document.getElementById("yourGuess").innerHTML = userGuess;
+                guessesLeft -=1;
+                updateGuessLeft();
         
-        lose++;
-        PopUplose();
-        document.getElementById("myAudioLose").play();
-        updateScore();
-        reset();
+                if (userGuess === computerChoice) {
+                    win++;
+                    document.getElementById("computerLeter").innerHTML = "YAYYYYYYY;   " + computerChoice +" is correct";
+                    updateScore();
+                    document.getElementById("myAudioWin").play();
+                    PopUpWin();
+                    holdGuessing = true;
+                    // pause(1);
+                    setTimeout(reset,10000);
+                }
+                else {            
+                    document.getElementById("computerLeter").innerHTML = "OOOOOPS! Another Guess PLZ!"; 
+                }
+            } else {
+                
+                lose++;
+                PopUplose();
+                document.getElementById("myAudioLose").play();
+                updateScore();
+                holdGuessing = true;
+                setTimeout(reset, 7000);
+            }
+        }    
     }    
 };
 
 $("#infoButton").on("click", function() {
+    unmuteBox = false;
     //animate:
     var div = $("#infoButton");
     var i = 0;
-    while (i<5){
-        div.animate({opacity: '1'}, "fast");
-        div.animate({opacity: '0.3'}, "fast");
-        i++;
-    }
-    div.animate({height: '300px', opacity: '0.5'}, "fast");
-    div.animate({width: '300px', opacity: '0.8'}, "fast");
-    div.animate({height: '100px', opacity: '1'}, "fast");
-    div.animate({width: '100px', opacity: '0.5'}, "fast"); 
+    // div.animate({width: '100px', opacity: '0.5'}, "fast"); 
     div.fadeOut("fast");
 });
 
@@ -123,4 +123,3 @@ function PopUplose(){
     div.fadeOut("fast");
 }
 
-    

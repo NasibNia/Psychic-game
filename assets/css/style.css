@@ -72,3 +72,18 @@ body{
     color: white;
     font-style: bold;
 }
+
+#infoButton4 {
+    display: none;
+    background-color: rgb(255, 102, 0);
+    position: absolute;
+    z-index: 99;
+    top: 30%;
+    left:28%;
+    height: 30%;
+    width: 50%;
+    font-size: 300%;
+    font-weight: 900;
+    color: white;
+    font-style: bold;
+}
